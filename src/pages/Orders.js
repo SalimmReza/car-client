@@ -9,9 +9,9 @@ const Orders = () => {
     const [orders, setOrders] = useState([]);
     console.log(orders)
 
-    const url = `http://localhost:5000/orders?email=${user?.email}`
+    const url = `https://y-roan-xi.vercel.app/orders?email=${user?.email}`
     useEffect(() => {
-        fetch(`http://localhost:5000/orders?email=${user?.email}`,
+        fetch(`https://y-roan-xi.vercel.app/orders?email=${user?.email}`,
             {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('token')}`
@@ -30,7 +30,7 @@ const Orders = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm('Do you want to Delete')
         if (proceed) {
-            fetch(`http://localhost:5000/orders/${id}`, {
+            fetch(`https://y-roan-xi.vercel.app/orders/${id}`, {
                 method: 'DELETE',
 
                 headers: {
@@ -52,7 +52,7 @@ const Orders = () => {
     }
 
     const handleUpdate = (id) => {
-        fetch(`http://localhost:5000/orders/${id}`, {
+        fetch(`https://y-roan-xi.vercel.app/orders/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',

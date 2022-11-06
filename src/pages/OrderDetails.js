@@ -6,7 +6,7 @@ const OrderDetails = ({ order, handleDelete, handleUpdate }) => {
     const [serviceDetails, setServiceDetails] = useState({})
 
     useEffect(() => {
-        fetch(`http://localhost:5000/services/${service}`)
+        fetch(`https://y-roan-xi.vercel.app/services/${service}`)
             .then(res => res.json())
             .then(data => setServiceDetails(data))
     }, [service])
@@ -45,11 +45,11 @@ const OrderDetails = ({ order, handleDelete, handleUpdate }) => {
             </td>
             <td>{message}</td>
             <th>
-                <button 
-                onClick={()=> handleUpdate(_id)}
-                className="btn btn-ghost btn-xs lowercase">{
-                    status ? status : 'Pending'
-                }</button>
+                <button
+                    onClick={() => handleUpdate(_id)}
+                    className="btn btn-ghost btn-xs lowercase">{
+                        status ? status : 'Pending'
+                    }</button>
             </th>
         </tr>
 
