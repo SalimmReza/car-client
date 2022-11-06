@@ -57,7 +57,7 @@ const Checkout = () => {
 
                 <div className="absolute flex justify-end gap-5 transform -translate-y-1/2 left-[45%]  bottom-[-8%] button ">
                     <div className='flex text-white h-[50px] px-8  bg-red-600 hover:bg-yellow-500 rounded-t-[50px] '>
-                        <p className='mt-[12px]'>Home/</p>
+                        <p className='mt-[12px]'>Homee/</p>
                         <p className='mt-[12px]'>Checkout</p>
                     </div>
                 </div>

@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import img from '../assets/images/login/login.svg'
 import { AuthContext } from '../Context/AuthProvider';
+import { setJWT } from '../Utils/Services';
 
 const Login = () => {
     const [error, setError] = useState('');
@@ -22,24 +23,9 @@ const Login = () => {
                 console.log(user);
                 setError('');
 
-                const cUser = {
-                    email: user.email
-                }
+                setJWT(user);
 
-                //get jwt token
-                fetch(`https://y-roan-xi.vercel.app/jwt`, {
-                    method: 'POST',
-                    headers: {
-                        'content-type': ' application/json'
-                    },
-                    body: JSON.stringify(cUser)
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log(data)
-                        localStorage.setItem('token', data.token);
-                        navigate(from, { replace: true });
-                    })
+                navigate(from, { replace: true });
 
 
 
