@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import img from '../assets/images/checkout/checkout.png'
 import { AuthContext } from '../Context/AuthProvider';
+import './Checkout.css'
 
 const Checkout = () => {
     const { _id, title, price } = useLoaderData();
@@ -32,7 +33,8 @@ const Checkout = () => {
         fetch(`http://localhost:5000/orders`, {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify(order)
         })
@@ -53,7 +55,7 @@ const Checkout = () => {
             <div className='relative'>
                 <img className='w-full' src={img} alt="" />
 
-                <div className="absolute flex justify-end gap-5 transform -translate-y-1/2 left-[45%]  bottom-[-8%] ">
+                <div className="absolute flex justify-end gap-5 transform -translate-y-1/2 left-[45%]  bottom-[-8%] button ">
                     <div className='flex text-white h-[50px] px-8  bg-red-600 hover:bg-yellow-500 rounded-t-[50px] '>
                         <p className='mt-[12px]'>Home/</p>
                         <p className='mt-[12px]'>Checkout</p>
@@ -78,7 +80,7 @@ const Checkout = () => {
 
                 <div className='grid grid-cols-2 gap-4'>
 
-                    <input name="firstName" type="text" placeholder="First Name" className="input input-bordered input-primary w-full " />
+                    <input name="firstName" type="text" placeholder="First Name" className="input input-bordered input-primary w-full " autoComplete='off' />
                     <input name="lastName" type="text" placeholder="Last Name" className="input input-bordered input-primary w-full " />
                     <input name="phone" type="text" placeholder="Phone Number" className="input input-bordered input-primary w-full " />
                     <input name="email" type="text" placeholder="Email" defaultValue={user?.email} readOnly className="input input-bordered input-primary w-full " />

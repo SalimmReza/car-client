@@ -11,7 +11,7 @@ const Login = () => {
     const { loginIn, googleSignIn } = useContext(AuthContext);
 
     const provider = new GoogleAuthProvider();
-    // const from = location.state?.from?.pathname || '/';
+    const from = location.state?.from?.pathname || '/';
 
     const handleGoogleClick = () => {
         googleSignIn(provider)
@@ -21,7 +21,27 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 setError('');
-                // navigate(from, { replace: true });
+
+                const cUser = {
+                    email: user.email
+                }
+
+                //get jwt token
+                fetch(`http://localhost:5000/jwt`, {
+                    method: 'POST',
+                    headers: {
+                        'content-type': ' application/json'
+                    },
+                    body: JSON.stringify(cUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        localStorage.setItem('token', data.token);
+                        navigate(from, { replace: true });
+                    })
+
+
 
             }).catch((error) => {
                 const errorCode = error.code;
@@ -42,11 +62,12 @@ const Login = () => {
 
 
         loginIn(email, password)
+
             .then((userCredential) => {
                 const user = userCredential.user;
                 form.reset();
                 setError('');
-                // navigate(from, { replace: true });
+                navigate(from, { replace: true });
 
             })
             .catch((error) => {
